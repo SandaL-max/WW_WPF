@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WW_WPF.ViewModels;
 
 namespace WW_WPF
 {
@@ -23,6 +24,7 @@ namespace WW_WPF
         public SelectCharacter()
         {
             InitializeComponent();
+            DataContext = new SelectCharacterViewModel();
         }
     }
 }

@@ -7,7 +7,23 @@
       mc:Ignorable="d" 
       d:DesignHeight="630" d:DesignWidth="800"
       Title="SelectCharacter">
-
+    <Page.Resources>
+        <Style x:Key="ProgressBar">
+            <Setter Property="ItemsControl.Foreground" Value="Red"/>
+            <Setter Property="ItemsControl.Background" Value="#4CE6E6E6"/>
+            <Setter Property="ItemsControl.Margin" Value="5,0,5,0"/>
+            <Setter Property="ItemsControl.Height" Value="20"/>
+        </Style>
+        <Style x:Key="LabelText">
+            <Setter Property="ItemsControl.VerticalAlignment" Value="Top"/>
+            <Setter Property="ItemsControl.HorizontalAlignment" Value="Left"/>
+            <Setter Property="ItemsControl.FontWeight" Value="Bold"/>
+            <Setter Property="ItemsControl.Foreground" Value="White"/>
+            <Setter Property="ItemsControl.FontFamily" Value="Cascadia Code"/>
+            <Setter Property="ItemsControl.Margin" Value="20,10,20,5"/>
+            <Setter Property="ItemsControl.FontSize" Value="30"/>
+        </Style>
+    </Page.Resources>
     <Grid>
         <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch" ShowGridLines="False" >
             <Grid.Background>
@@ -24,18 +40,18 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
             <StackPanel Grid.Row="0" Grid.Column="0">
-                <TextBlock VerticalAlignment="Top" HorizontalAlignment="Left" Text="Персонаж" FontSize="30" FontWeight="Bold" Foreground="White" FontFamily="Cascadia Code" Margin="20,10,20,5"></TextBlock>
-                <ProgressBar Height="20" Value="70" Foreground="Red" Background="#4CE6E6E6" Margin="5,0,5,0"></ProgressBar>
+                <TextBlock Text="Персонаж" Margin="20,10,20,5" Style="{StaticResource LabelText}"></TextBlock>
+                <ProgressBar Value="70" Style="{StaticResource ProgressBar}"></ProgressBar>
             </StackPanel>
-            <TextBlock Grid.Row="0" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Center" Text="Бой" FontSize="30" FontWeight="Bold" Foreground="White" FontFamily="Cascadia Code" Margin="20,10,20,5"></TextBlock>
+            <TextBlock Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" Text="Бой" Style="{StaticResource LabelText}"></TextBlock>
             <StackPanel Grid.Row="0" Grid.Column="2">
-                <TextBlock VerticalAlignment="Top" HorizontalAlignment="Right" Text="Враг" FontSize="30" FontWeight="Bold" Foreground="White" FontFamily="Cascadia Code" Margin="20,10,20,5"></TextBlock>
-                <ProgressBar Height="20" Value="70" Foreground="Red" Background="#4CE6E6E6" Margin="5,0,5,0" FlowDirection="RightToLeft"></ProgressBar>
+                <TextBlock HorizontalAlignment="Right" Text="Враг" Style="{StaticResource LabelText}"></TextBlock>
+                <ProgressBar Value="70" Style="{StaticResource ProgressBar}" FlowDirection="RightToLeft"></ProgressBar>
             </StackPanel>
             <StackPanel Grid.Row="1" Grid.Column="0">
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock VerticalAlignment="Top" HorizontalAlignment="Left" Text="Уровень: 10" FontSize="20" MinWidth="30" FontWeight="Bold" Foreground="White" FontFamily="Cascadia Code" Margin="20,10,20,0"></TextBlock>
-                    <TextBlock VerticalAlignment="Top" HorizontalAlignment="Left" Text="Урон: 10" FontSize="20" MinWidth="30" FontWeight="Bold" Foreground="White" FontFamily="Cascadia Code" Margin="20,10,20,0"></TextBlock>
+                    <TextBlock Text="Уровень: 10" FontSize="20" Style="{StaticResource LabelText}"></TextBlock>
+                    <TextBlock Text="Урон: 10" FontSize="20" Style="{StaticResource LabelText}"></TextBlock>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                     <Button Height="auto" Width="auto" Content="Атаковать" FontFamily="Cascadia Code" FontSize="20" Foreground="White" Background="Transparent" BorderBrush="White" BorderThickness="3" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10" Padding="5,5,5,5"></Button>
@@ -44,13 +60,13 @@
             </StackPanel>
             <StackPanel Grid.Row="1" Grid.Column="2">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
-                    <TextBlock VerticalAlignment="Top" HorizontalAlignment="Right" Text="Уровень: 10" FontSize="20" MinWidth="30" FontWeight="Bold" Foreground="White" FontFamily="Cascadia Code" Margin="20,10,20,0"></TextBlock>
-                    <TextBlock VerticalAlignment="Top" HorizontalAlignment="Right" Text="Урон: 10" FontSize="20" MinWidth="30" FontWeight="Bold" Foreground="White" FontFamily="Cascadia Code" Margin="20,10,20,0"></TextBlock>
+                    <TextBlock Text="Уровень: 10" FontSize="20" Style="{StaticResource LabelText}"></TextBlock>
+                    <TextBlock Text="Урон: 10" FontSize="20" Style="{StaticResource LabelText}"></TextBlock>
                 </StackPanel>
             </StackPanel>
             <Image Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Source="/resources/pngwing.com.png" Stretch="Uniform" Height="auto"/>
             <StackPanel Grid.Row="2" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Center">
-                <ProgressBar Height="10" Value="70" Foreground="Red" Background="#4CE6E6E6" Margin="5,0,5,0"></ProgressBar>
+                <ProgressBar Height="10" Value="70" Style="{StaticResource ProgressBar}"></ProgressBar>
                 <Image  Source="/resources/pngwing.com(5).png" Stretch="Uniform" Height="auto" FlowDirection="RightToLeft"/>
             </StackPanel>
             <Image Grid.Row="2" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" Source="/resources/pngwing.com(3).png" Stretch="Uniform" Height="auto"/>
