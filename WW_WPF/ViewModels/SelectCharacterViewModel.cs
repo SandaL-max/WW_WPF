@@ -6,31 +6,52 @@ using System.Threading.Tasks;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Collections.ObjectModel;
+using System.Windows.Controls;
+using System.Windows.Navigation;
 using WW_WPF.BL;
 
 namespace WW_WPF.ViewModels
 {
     public class SelectCharacterViewModel : INotifyPropertyChanged
     {
-        private Character character;
-        private Enemy enemy;
+        private Page page;
 
-        public Character Character
+        public Page Page
         {
-            get { return character; }
-            set { character = value; }
+            get { return page; }
+            set { page = value; }
         }
-        public Enemy Enemy
+        private RelayCommand selectWarrior;
+        public RelayCommand SelectWarrior
         {
-            get { return enemy; }
-            set { enemy = value; }
+            get
+            {
+                return selectWarrior ??
+                  (selectWarrior = new RelayCommand(obj =>
+                  {
+                      var appState = new AppState();
+                      appState.Character = new Warrior();
+                      var fight = new FightPage();
+                      Page.NavigationService.Navigate(fight);
+                  }));
+            }
         }
-
-        public SelectCharacterViewModel()
+        private RelayCommand selectWizard;
+        public RelayCommand SelectWizard
         {
-            character = new Warrior();
-            enemy = new Barbarian();
+            get
+            {
+                return selectWizard ??
+                  (selectWizard = new RelayCommand(obj =>
+                  {
+                      var appState = new AppState();
+                      appState.Character = new Wizard();
+                      var fight = new FightPage();
+                      Page.NavigationService.Navigate(fight);
+                  }));
+            }
         }
+        public SelectCharacterViewModel(Page _page) { Page = _page; }
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string prop = "")

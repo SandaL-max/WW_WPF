@@ -41,30 +41,30 @@
             </Grid.RowDefinitions>
             <StackPanel Grid.Row="0" Grid.Column="0">
                 <TextBlock Text="Персонаж" Margin="20,10,20,5" Style="{StaticResource LabelText}"></TextBlock>
-                <ProgressBar Value="70" Style="{StaticResource ProgressBar}"></ProgressBar>
+                <ProgressBar Maximum="{Binding MaxHealth}" Value="{Binding Health}" Style="{StaticResource ProgressBar}"></ProgressBar>
             </StackPanel>
             <TextBlock Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" Text="Бой" Style="{StaticResource LabelText}"></TextBlock>
             <StackPanel Grid.Row="0" Grid.Column="2">
                 <TextBlock HorizontalAlignment="Right" Text="Враг" Style="{StaticResource LabelText}"></TextBlock>
-                <ProgressBar Value="70" Style="{StaticResource ProgressBar}" FlowDirection="RightToLeft"></ProgressBar>
+                <ProgressBar Maximum="{Binding EnemyMaxHealth}" Value="{Binding EnemyHealth}" Style="{StaticResource ProgressBar}" FlowDirection="RightToLeft"></ProgressBar>
             </StackPanel>
             <StackPanel Grid.Row="1" Grid.Column="0">
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Уровень: 10" FontSize="20" Style="{StaticResource LabelText}"></TextBlock>
-                    <TextBlock Text="Урон: 10" FontSize="20" Style="{StaticResource LabelText}"></TextBlock>
+                    <TextBlock Text="{Binding CharacterLevel}" FontSize="20" Style="{StaticResource LabelText}"></TextBlock>
+                    <TextBlock Text="{Binding CharacterDamage}" FontSize="20" Style="{StaticResource LabelText}"></TextBlock>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                    <Button Height="auto" Width="auto" Content="Атаковать" FontFamily="Cascadia Code" FontSize="20" Foreground="White" Background="Transparent" BorderBrush="White" BorderThickness="3" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10" Padding="5,5,5,5"></Button>
-                    <Button Height="auto" Width="auto" Content="Лечить" FontFamily="Cascadia Code" FontSize="20" Foreground="White" Background="Transparent" BorderBrush="White" BorderThickness="3" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10" Padding="5,5,5,5"></Button>
+                    <Button Command="{Binding btnAttack}" Height="auto" Width="auto" Content="Атаковать" FontFamily="Cascadia Code" FontSize="20" Foreground="White" Background="Transparent" BorderBrush="White" BorderThickness="3" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10" Padding="5,5,5,5"></Button>
+                    <Button Command="{Binding btnHeal}" Height="auto" Width="auto" Content="Лечить" FontFamily="Cascadia Code" FontSize="20" Foreground="White" Background="Transparent" BorderBrush="White" BorderThickness="3" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10" Padding="5,5,5,5"></Button>
                 </StackPanel>
             </StackPanel>
             <StackPanel Grid.Row="1" Grid.Column="2">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
-                    <TextBlock Text="Уровень: 10" FontSize="20" Style="{StaticResource LabelText}"></TextBlock>
-                    <TextBlock Text="Урон: 10" FontSize="20" Style="{StaticResource LabelText}"></TextBlock>
+                    <TextBlock Text="{Binding EnemyLevel}" FontSize="20" Style="{StaticResource LabelText}"></TextBlock>
+                    <TextBlock Text="{Binding EnemyDamage}" FontSize="20" Style="{StaticResource LabelText}"></TextBlock>
                 </StackPanel>
             </StackPanel>
-            <Image Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Source="/resources/pngwing.com.png" Stretch="Uniform" Height="auto"/>
+            <Image Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Source="{Binding CharacterImage}" Stretch="Uniform" Height="auto"/>
             <StackPanel Grid.Row="2" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Center">
                 <ProgressBar Height="10" Value="70" Style="{StaticResource ProgressBar}"></ProgressBar>
                 <Image  Source="/resources/pngwing.com(5).png" Stretch="Uniform" Height="auto" FlowDirection="RightToLeft"/>

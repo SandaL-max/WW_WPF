@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Navigation;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -22,10 +23,9 @@ namespace WW_WPF
         public MainWindow()
         {
             InitializeComponent();
+            AppState.MainWindow = this;
             var select = new SelectCharacter();
-            var fight = new FightPage();
-            var map = new MapPage();
-            this.Content = select;
+            //this.Content = select;
         }
     }
 }

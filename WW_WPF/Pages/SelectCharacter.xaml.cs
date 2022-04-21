@@ -24,7 +24,7 @@ namespace WW_WPF
         public SelectCharacter()
         {
             InitializeComponent();
-            DataContext = new SelectCharacterViewModel();
+            DataContext = new SelectCharacterViewModel(this);
         }
     }
 }

@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:WW_WPF"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="SelectCharacter">
+      Title="SelectCharacter" ShowsNavigationUI="False">
 
     <Grid>
         <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch" ShowGridLines="False" >
@@ -27,8 +27,8 @@
             <TextBlock Grid.Row="0" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Center" Text="Маг" FontSize="40" FontWeight="Bold" Foreground="White" FontFamily="Cascadia Code"></TextBlock>
             <Image Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Source="/resources/pngwing.com.png" Stretch="Uniform" Height="auto"/>
             <Image Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Source="/resources/pngwing.com(1).png" Stretch="Uniform" Height="auto"/>
-            <Button Grid.Row="2" Grid.Column="0" Height="auto" Width="auto" Content="Выбрать" FontFamily="Cascadia Code" FontSize="40" Foreground="White" Background="Transparent" BorderBrush="White" BorderThickness="3" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10"></Button>
-            <Button Grid.Row="2" Grid.Column="1" Height="auto" Width="auto" Content="Выбрать" FontFamily="Cascadia Code" FontSize="40" Foreground="White" Background="Transparent" BorderBrush="White" BorderThickness="3" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10"></Button>
+            <Button Grid.Row="2" Grid.Column="0" Height="auto" Width="auto" Content="Выбрать" FontFamily="Cascadia Code" FontSize="40" Foreground="White" Background="Transparent" BorderBrush="White" BorderThickness="3" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10" Command="{Binding SelectWarrior}"></Button>
+            <Button Grid.Row="2" Grid.Column="1" Height="auto" Width="auto" Content="Выбрать" FontFamily="Cascadia Code" FontSize="40" Foreground="White" Background="Transparent" BorderBrush="White" BorderThickness="3" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10" Command="{Binding SelectWizard}"></Button>
         </Grid>
     </Grid>
 </Page>
