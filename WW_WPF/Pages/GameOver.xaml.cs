@@ -10,7 +10,6 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WW_WPF.BL;
 using WW_WPF.ViewModels;
@@ -18,14 +17,14 @@ using WW_WPF.ViewModels;
 namespace WW_WPF
 {
     /// <summary>
-    /// Логика взаимодействия для FightPage.xaml
+    /// Логика взаимодействия для GameOver.xaml
     /// </summary>
-    public partial class FightPage : Page
+    public partial class GameOver : Page
     {
-        public FightPage()
+        public GameOver()
         {
             InitializeComponent();
-            DataContext = new FightPageViewModel(this);
+            DataContext = new GameOverViewModel(this);
         }
     }
 }

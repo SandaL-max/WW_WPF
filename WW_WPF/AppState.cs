@@ -41,15 +41,8 @@ namespace WW_WPF
         }
         public static Window? MainWindow { get; set; }
 
-        //public static event PropertyChangedEventHandler StaticPropertyChanged;
-        //public static void OnStaticPropertyChanged(string pname)
-        //{
-        //    PropertyChangedEventArgs e = new PropertyChangedEventArgs(pname);
-        //    PropertyChangedEventHandler h = StaticPropertyChanged;
-        //    if (h != null)
-        //        h(null, e);
+        //public const string ResorcesPath = "pack://application:,,,/WW_WPF;component/resources/";
 
-        //}
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string prop = "")

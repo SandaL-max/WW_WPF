@@ -3,10 +3,10 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:WW_WPF"
+      xmlns:local="clr-namespace:WW_WPF" xmlns:viewmodels="clr-namespace:WW_WPF.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:FightPageViewModel}"
       mc:Ignorable="d" 
       d:DesignHeight="630" d:DesignWidth="800"
-      Title="SelectCharacter">
+      Title="FightPage">
     <Page.Resources>
         <Style x:Key="ProgressBar">
             <Setter Property="ItemsControl.Foreground" Value="Red"/>
@@ -24,11 +24,18 @@
             <Setter Property="ItemsControl.FontSize" Value="30"/>
         </Style>
     </Page.Resources>
-    <Grid>
-        <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch" ShowGridLines="False" >
-            <Grid.Background>
-                <ImageBrush ImageSource="/resources/eeg2ux3v.png" Stretch="UniformToFill"/>
-            </Grid.Background>
+    <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch" ShowGridLines="False">
+        <Grid.Background>
+            <ImageBrush ImageSource="/resources/eeg2ux3v.png" Stretch="UniformToFill"/>
+        </Grid.Background>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Grid.Column="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" ShowGridLines="False" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="6*"/>
                 <ColumnDefinition Width="2*"/>
@@ -41,17 +48,19 @@
             </Grid.RowDefinitions>
             <StackPanel Grid.Row="0" Grid.Column="0">
                 <TextBlock Text="Персонаж" Margin="20,10,20,5" Style="{StaticResource LabelText}"></TextBlock>
-                <ProgressBar Maximum="{Binding MaxHealth}" Value="{Binding Health}" Style="{StaticResource ProgressBar}"></ProgressBar>
+                <ProgressBar DataContext="{Binding appState.Character}" Maximum="{Binding Health.MaxHealth}" Value="{Binding Health.HealthValue}" Style="{StaticResource ProgressBar}"></ProgressBar>
             </StackPanel>
             <TextBlock Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" Text="Бой" Style="{StaticResource LabelText}"></TextBlock>
             <StackPanel Grid.Row="0" Grid.Column="2">
                 <TextBlock HorizontalAlignment="Right" Text="Враг" Style="{StaticResource LabelText}"></TextBlock>
-                <ProgressBar Maximum="{Binding EnemyMaxHealth}" Value="{Binding EnemyHealth}" Style="{StaticResource ProgressBar}" FlowDirection="RightToLeft"></ProgressBar>
+                <ProgressBar DataContext="{Binding appState.Enemy}" Maximum="{Binding Health.MaxHealth}" Value="{Binding Health.HealthValue}" Style="{StaticResource ProgressBar}" FlowDirection="RightToLeft"></ProgressBar>
             </StackPanel>
             <StackPanel Grid.Row="1" Grid.Column="0">
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="{Binding CharacterLevel}" FontSize="20" Style="{StaticResource LabelText}"></TextBlock>
-                    <TextBlock Text="{Binding CharacterDamage}" FontSize="20" Style="{StaticResource LabelText}"></TextBlock>
+                    <TextBlock Text="Уровень: " FontSize="20" Style="{StaticResource LabelText}" Margin="20,10,0,5"></TextBlock>
+                    <TextBlock DataContext="{Binding appState.Character}" Text="{Binding Level.LevelValue}" FontSize="20" Style="{StaticResource LabelText}" Margin="0,10,20,5"></TextBlock>
+                    <TextBlock Text="Урон: " FontSize="20" Style="{StaticResource LabelText}" Margin="20,10,0,5"></TextBlock>
+                    <TextBlock DataContext="{Binding appState.Character}" Text="{Binding Damage}" FontSize="20" Style="{StaticResource LabelText}"></TextBlock>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                     <Button Command="{Binding btnAttack}" Height="auto" Width="auto" Content="Атаковать" FontFamily="Cascadia Code" FontSize="20" Foreground="White" Background="Transparent" BorderBrush="White" BorderThickness="3" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10" Padding="5,5,5,5"></Button>
@@ -60,16 +69,19 @@
             </StackPanel>
             <StackPanel Grid.Row="1" Grid.Column="2">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
-                    <TextBlock Text="{Binding EnemyLevel}" FontSize="20" Style="{StaticResource LabelText}"></TextBlock>
-                    <TextBlock Text="{Binding EnemyDamage}" FontSize="20" Style="{StaticResource LabelText}"></TextBlock>
+                    <TextBlock Text="Уровень: " FontSize="20" Style="{StaticResource LabelText}" Margin="20,10,0,5"></TextBlock>
+                    <TextBlock DataContext="{Binding appState.Enemy.Level}" Text="{Binding LevelValue}" FontSize="20" Style="{StaticResource LabelText}" Margin="0,10,20,5"></TextBlock>
+                    <TextBlock Text="Урон: " FontSize="20" Style="{StaticResource LabelText}" Margin="20,10,0,5"></TextBlock>
+                    <TextBlock DataContext="{Binding appState.Enemy}" Text="{Binding Damage}" FontSize="20" Style="{StaticResource LabelText}" HorizontalAlignment="Left"></TextBlock>
                 </StackPanel>
             </StackPanel>
             <Image Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Source="{Binding CharacterImage}" Stretch="Uniform" Height="auto"/>
             <StackPanel Grid.Row="2" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Center">
-                <ProgressBar Height="10" Value="70" Style="{StaticResource ProgressBar}"></ProgressBar>
-                <Image  Source="/resources/pngwing.com(5).png" Stretch="Uniform" Height="auto" FlowDirection="RightToLeft"/>
+                <ProgressBar Visibility="Visible" Height="10" Value="70" Style="{StaticResource ProgressBar}"></ProgressBar>
+                <Image Visibility="Visible" Source="/resources/pngwing.com(5).png" Stretch="Uniform" Height="auto"/>
             </StackPanel>
-            <Image Grid.Row="2" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" Source="/resources/pngwing.com(3).png" Stretch="Uniform" Height="auto"/>
+            <Image Grid.Row="2" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" Source="{Binding EnemyImage}" Stretch="Uniform" Height="auto"/>
         </Grid>
+        <ProgressBar Grid.Row="1" Grid.Column="0" DataContext="{Binding appState.Character}" Maximum="{Binding Level.XPToLevelUp}" Value="{Binding Level.XP}" Style="{StaticResource ProgressBar}" Margin="0,0,0,0" Foreground="#FF4DA5E3" Height="10"></ProgressBar>
     </Grid>
 </Page>

@@ -4,9 +4,9 @@ namespace WW_WPF.BL
     {
         public Warrior()
         {
+            ImageName = "pngwing.com.png";
             _baseDamage = 10;
         }
-
         public override string GetEntityInfo()
         {
             return $"Персонаж (Воин)";

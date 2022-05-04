@@ -6,7 +6,7 @@ namespace WW_WPF.BL
     /// <summary>
     /// Отдельный компонент, который отвечает за работу со здоровьем
     /// </summary>
-    public class HealthSystem
+    public class HealthSystem : INotifyPropertyChanged
     {
         // Здоровье
         protected int _health = 100;
@@ -24,9 +24,18 @@ namespace WW_WPF.BL
                     _health = _maxHealth;
                 else
                     _health = value;
+                OnPropertyChanged("HealthValue");
             }
         }
-        public int MaxHealth => _maxHealth;
+        public int MaxHealth
+        {
+            get => _maxHealth;
+            set
+            {
+                _maxHealth = value;
+                OnPropertyChanged("MaxHelth");
+            }
+        }
 
         public HealthSystem(int health, int maxHealth)
         {
@@ -37,6 +46,13 @@ namespace WW_WPF.BL
         public void ApplyDamage(int amount)
         {
             HealthValue -= amount;
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        public void OnPropertyChanged([CallerMemberName] string prop = "")
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(prop));
         }
     }
 }

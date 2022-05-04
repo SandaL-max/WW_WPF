@@ -9,33 +9,30 @@ using System.Collections.ObjectModel;
 using System.Windows.Controls;
 using System.Windows.Navigation;
 using System.Windows.Media;
-using WW_WPF.BL;
 using System.Windows.Media.Imaging;
+using WW_WPF.BL;
 
 namespace WW_WPF.ViewModels
 {
     public class FightPageViewModel : INotifyPropertyChanged
     {
-        private AppState appState;
-        #region characterHealth
-        public int MaxHealth
+        private AppState _appState;
+        public AppState appState
         {
-            get { return appState.Character!.Health.MaxHealth; }
+            get { return _appState; }
             set
             {
-                OnPropertyChanged("MaxHealth");
+                _appState = value;
+                OnPropertyChanged("appState");
             }
         }
-        public int Health
+        private Page page;
+
+        public Page Page
         {
-            get { return appState.Character!.Health.HealthValue; }
-            set
-            {
-                appState.Character!.Health.HealthValue = value;
-                OnPropertyChanged("Health");
-            }
+            get { return page; }
+            set { page = value; }
         }
-        #endregion;
         #region characterImage
         private string ResorcesPath = "pack://application:,,,/WW_WPF;component/resources/";
         private ImageSource characterImage;
@@ -52,71 +49,30 @@ namespace WW_WPF.ViewModels
             }
         }
         #endregion;
-
-        #region enemyHealth
-        public int EnemyMaxHealth
+        #region enemyImage
+        private ImageSource enemyImage;
+        public ImageSource EnemyImage
         {
-            get { return appState.Enemy!.Health.MaxHealth; }
-            set
+            get
             {
-                OnPropertyChanged("MaxHealth");
+                return enemyImage;
             }
-        }
-        public int EnemyHealth
-        {
-            get { return appState.Enemy!.Health.HealthValue; }
             set
             {
-                appState.Enemy!.Health.HealthValue = value;
-                OnPropertyChanged("Health");
+                enemyImage = value;
+                OnPropertyChanged("EnemyImage");
             }
         }
         #endregion;
-        #region characterLevelAndDamage
-        public string CharacterLevel
+        #region Barricade
+        private string barricadeVisibility;
+        public string BarricadeVisibility
         {
-            get
-            {
-                return "Уровень: " + appState.Character!.Level.LevelValue;
-            }
+            get { return barricadeVisibility; }
             set
             {
-                OnPropertyChanged("CharacterLevel");
-            }
-        }
-        public string CharacterDamage
-        {
-            get
-            {
-                return "Урон: " + appState.Character!.Damage;
-            }
-            set
-            {
-                OnPropertyChanged("CharacterDamage");
-            }
-        }
-        #endregion;
-        #region enemyLevelAndDamage
-        public string EnemyLevel
-        {
-            get
-            {
-                return "Уровень: " + appState.Enemy!.Level.LevelValue;
-            }
-            set
-            {
-                OnPropertyChanged("EnemyLevel");
-            }
-        }
-        public string EnemyDamage
-        {
-            get
-            {
-                return "Урон: " + appState.Enemy!.Damage;
-            }
-            set
-            {
-                OnPropertyChanged("EnemyDamage");
+                barricadeVisibility = value;
+                OnPropertyChanged("BarricadeVisibility");
             }
         }
         #endregion;
@@ -129,8 +85,33 @@ namespace WW_WPF.ViewModels
                 return _btnAttack ??
                   (_btnAttack = new RelayCommand(obj =>
                   {
-                      appState.Character!.Hit(appState.Enemy!);
+                      if (appState.Enemy!.Barricade is not null && appState.Enemy.Barricade.IsAlive)
+                          appState.Character!.Hit(appState.Enemy.Barricade);
+                      else
+                          appState.Character!.Hit(appState.Enemy!);
                       appState.Enemy!.Hit(appState.Character!);
+                      if (!appState.Enemy!.IsAlive)
+                      {
+                          Random rnd = new Random();
+                          if (rnd.Next(0, 101) >= 50) 
+                              appState.Enemy = new Barbarian(new LevelSystem(rnd.Next(1, appState.Character.Level.LevelValue + 1)));
+                          else
+                              appState.Enemy = new Slime(new LevelSystem(rnd.Next(1, appState.Character.Level.LevelValue + 1)));
+                          EnemyImage = GetImageFromSources(appState.Enemy.ImageName);
+                          if (rnd.Next(0, 101) >= 50)
+                          {
+                              appState.Enemy!.Barricade = new Barricade(50);
+                          }
+                          else
+                          {
+
+                          }
+                      }
+                      if (!appState.Character!.IsAlive)
+                      {
+                          var GameOverPage = new GameOver();
+                          Page.NavigationService.Navigate(GameOverPage);
+                      }
                   }));
             }
         }
@@ -147,32 +128,27 @@ namespace WW_WPF.ViewModels
             }
         }
         #endregion
-
-        public FightPageViewModel()
+        public FightPageViewModel(Page _page)
         {
             appState = new AppState();
+            Page = _page;
             appState.Enemy = new Barbarian();
+            CharacterImage = GetImageFromSources(appState.Character!.ImageName);
+            EnemyImage = GetImageFromSources(appState.Enemy!.ImageName);
+        }
+        public TransformedBitmap GetImageFromSources(string name)
+        {
             var bitMapImage = new BitmapImage();
             bitMapImage.BeginInit();
-            if (appState.Character is Warrior)
-            {
-                bitMapImage.UriSource = new Uri(ResorcesPath + "pngwing.com.png");
-            }
-            else
-            {
-                bitMapImage.UriSource = new Uri(ResorcesPath + "pngwing.com(1).png");
-            }
+            bitMapImage.UriSource = new Uri(ResorcesPath + name);
             bitMapImage.EndInit();
 
             var tbm = new TransformedBitmap();
             tbm.BeginInit();
             tbm.Source = bitMapImage;
-            if (appState.Character is Wizard)
-                tbm.Transform = new ScaleTransform(-1, 1, 0, 0);
             tbm.EndInit();
-            CharacterImage = tbm;
+            return tbm;
         }
-
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string prop = "")
         {

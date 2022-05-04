@@ -4,8 +4,10 @@ namespace WW_WPF.BL
     {
         public Barbarian(LevelSystem level = null) : base(level)
         {
-            _baseDamage = 0;
-            Health = new HealthSystem(20, 20);
+
+            ImageName = "pngwing.com(3).png";
+            _baseDamage = 1;
+            Health = new HealthSystem(50, 50);
         }
 
         public override string GetEntityInfo()

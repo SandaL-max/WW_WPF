@@ -1,11 +1,13 @@
 using System;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace WW_WPF.BL
 {
     /// <summary>
     /// ќтдельный компонент, который отвечает за работу с уровнем
     /// </summary>
-    public class LevelSystem
+    public class LevelSystem : INotifyPropertyChanged
     {
         // ћножитель, который будет увеличивать необходимое кол-во опыта дл€ повышени€ уровн€
         // Ќапример, если множитель равен 1.5, то на первом уровне игроку нужно набрать 100 опыта, а на 
@@ -17,22 +19,46 @@ namespace WW_WPF.BL
         protected int _xp = 0;
         // —колько нужно опыта дл€ повышени€ уровн€
         protected int _xpToLevelUp = 100;
-        public int LevelValue => _level;
-        public int XP => _xp;
-        public int XPToLevelUp => _xpToLevelUp;
+        public int LevelValue
+        {
+            get { return _level; }
+            set
+            {
+                _level = value;
+                OnPropertyChanged("LevelValue");
+            }
+        }
+        public int XP
+        {
+            get { return _xp; }
+            set
+            {
+                _xp = value;
+                OnPropertyChanged("XP");
+            }
+        }
+        public int XPToLevelUp
+        {
+            get { return _xpToLevelUp; }
+            set
+            {
+                _xpToLevelUp = value;
+                OnPropertyChanged("XPToLevelUp");
+            }
+        }
         public event Action? levelUp;
 
 
         public LevelSystem(int level = 1)
         {
-            _level = level;
+            LevelValue = level;
         }
         // Ётот метод производит все действи€ необходимые дл€ повышени€ уровн€
         public virtual void LevelUp()
         {
-            _xp = 0;
-            _xpToLevelUp = (int)Math.Round(_xpToLevelUp * _xpToLevelUpMultiplier);
-            _level++;
+            XP = 0;
+            XPToLevelUp = (int)Math.Round(XPToLevelUp * _xpToLevelUpMultiplier);
+            LevelValue++;
             levelUp?.Invoke();
         }
 
@@ -41,10 +67,10 @@ namespace WW_WPF.BL
         {
             while (amount > 0)
             {
-                _xp += amount;
-                if (_xp >= _xpToLevelUp)
+                XP += amount;
+                if (XP >= XPToLevelUp)
                 {
-                    amount = _xp - _xpToLevelUp;
+                    amount = XP - XPToLevelUp;
                     LevelUp();
                 }
                 else
@@ -52,6 +78,12 @@ namespace WW_WPF.BL
                     amount = 0;
                 }
             }
+        }
+        public event PropertyChangedEventHandler PropertyChanged;
+        public void OnPropertyChanged([CallerMemberName] string prop = "")
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(prop));
         }
     }
 }

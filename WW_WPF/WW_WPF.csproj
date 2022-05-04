@@ -16,6 +16,7 @@
     <None Remove="resources\pngwing.com%283%29.png" />
     <None Remove="resources\pngwing.com%284%29.png" />
     <None Remove="resources\pngwing.com%285%29.png" />
+    <None Remove="resources\pngwing.com(6).png" />
     <None Remove="resources\pngwing.com.png" />
     <None Remove="resources\zeln45qx.bmp" />
   </ItemGroup>
@@ -35,6 +36,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="resources\pngegg.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="resources\pngwing.com%286%29.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="resources\pngwing.com(1).png">

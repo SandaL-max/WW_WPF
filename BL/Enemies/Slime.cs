@@ -4,6 +4,7 @@ namespace WW_WPF.BL
     {
         public Slime(LevelSystem level = null) : base(level)
         {
+            ImageName = "pngwing.com(4).png";
             Health = new HealthSystem(30, 30);
         }
 
