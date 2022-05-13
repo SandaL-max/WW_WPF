@@ -2,10 +2,22 @@ namespace WW_WPF.BL
 {
     public class Slime : Enemy
     {
-        public Slime(LevelSystem level = null) : base(level)
+        public Slime(LevelSystem? level = null) : base(level)
         {
             ImageName = "pngwing.com(4).png";
             Health = new HealthSystem(30, 30);
+        }
+
+        public override List<IItem> GetDrop()
+        {
+            var items = new List<IItem>();
+            if (new Random().Next(1, 101) <= 50)
+                items.Add(new IronChestplate());
+
+            if (new Random().Next(1, 101) <= 25)
+                items.Add(new HealthPotion((1 + _level.LevelValue) * 5));
+
+            return items;
         }
 
         public override string GetEntityInfo()

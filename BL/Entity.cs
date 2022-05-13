@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 namespace WW_WPF.BL
 {
     /// <summary>
-    /// Класс сущности (общий класс для всех существ)
+    /// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
     /// </summary>
     public abstract class Entity : IHitable, INotifyPropertyChanged
     { 
@@ -36,10 +36,10 @@ namespace WW_WPF.BL
                 return _baseDamage;
             }
         }
-        // Говорит о том, жива ли сущность
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         public bool IsAlive => Health.HealthValue > 0;
 
-        public void ApplyDamage(int amount)
+        public virtual void ApplyDamage(int amount)
         {
             Health.ApplyDamage(amount);
         }

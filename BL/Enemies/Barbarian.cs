@@ -2,12 +2,23 @@ namespace WW_WPF.BL
 {
     public class Barbarian : Enemy
     {
-        public Barbarian(LevelSystem level = null) : base(level)
+        public Barbarian(LevelSystem? level = null) : base(level)
         {
-
             ImageName = "pngwing.com(3).png";
             _baseDamage = 1;
             Health = new HealthSystem(50, 50);
+        }
+
+        public override List<IItem> GetDrop()
+        {
+            var items = new List<IItem>();
+            if (new Random().Next(1, 101) <= 50)
+                items.Add(new Sword());
+
+            if (new Random().Next(1, 101) <= 25)
+                items.Add(new HealthPotion((1 + _level.LevelValue) * 5));
+
+            return items;
         }
 
         public override string GetEntityInfo()

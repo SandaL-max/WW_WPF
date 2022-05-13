@@ -28,13 +28,15 @@ namespace WW_WPF.BL
             get { return _baseDamage * (_level.LevelValue); }
         }
 
-        public Enemy(LevelSystem level = null)
+        public Enemy(LevelSystem? level = null)
         {
             if(level is null)
                 level = new LevelSystem();
             _level = level;
             _level.levelUp += OnLevelUp;
         }
+
+        public abstract List<IItem> GetDrop();
 
         public virtual void OnLevelUp() { }
     }
