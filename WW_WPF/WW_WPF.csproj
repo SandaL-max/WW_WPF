@@ -8,16 +8,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="resources\eeg2ux3v.bmp" />
-    <None Remove="resources\eeg2ux3v.png" />
-    <None Remove="resources\png-clipart-goblin-goblin.png" />
-    <None Remove="resources\pngegg.png" />
-    <None Remove="resources\pngwing.com%281%29.png" />
-    <None Remove="resources\pngwing.com%283%29.png" />
-    <None Remove="resources\pngwing.com%284%29.png" />
-    <None Remove="resources\pngwing.com%285%29.png" />
-    <None Remove="resources\pngwing.com(6).png" />
-    <None Remove="resources\pngwing.com.png" />
+    <None Remove="resources\Background.png" />
+    <None Remove="resources\Barbarian.png" />
+    <None Remove="resources\Barricade.png" />
+    <None Remove="resources\Inventory.png" />
+    <None Remove="resources\Slime.png" />
+    <None Remove="resources\Sword.png" />
+    <None Remove="resources\Warrior.png" />
+    <None Remove="resources\WizardLeft.png" />
+    <None Remove="resources\WizardRight.png" />
     <None Remove="resources\zeln45qx.bmp" />
   </ItemGroup>
 
@@ -26,34 +25,31 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="resources\eeg2ux3v.bmp">
+    <Resource Include="resources\Background.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="resources\eeg2ux3v.png">
+    <Resource Include="resources\Barbarian.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="resources\png-clipart-goblin-goblin.png">
+    <Resource Include="resources\Barricade.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="resources\pngegg.png">
+    <Resource Include="resources\Inventory.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="resources\pngwing.com%286%29.png">
+    <Resource Include="resources\Slime.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="resources\pngwing.com(1).png">
+    <Resource Include="resources\Sword.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="resources\pngwing.com(3).png">
+    <Resource Include="resources\Warrior.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="resources\pngwing.com(4).png">
+    <Resource Include="resources\WizardLeft.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="resources\pngwing.com(5).png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="resources\pngwing.com.png">
+    <Resource Include="resources\WizardRight.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="resources\zeln45qx.bmp">

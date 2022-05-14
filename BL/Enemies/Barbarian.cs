@@ -4,7 +4,7 @@ namespace WW_WPF.BL
     {
         public Barbarian(LevelSystem? level = null) : base(level)
         {
-            ImageName = "pngwing.com(3).png";
+            ImageName = "Barbarian.png";
             _baseDamage = 1;
             Health = new HealthSystem(50, 50);
         }

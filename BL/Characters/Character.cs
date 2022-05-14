@@ -32,7 +32,7 @@ namespace WW_WPF.BL
         public override void ApplyDamage(int amount)
         {
             amount -= _armorBonus;
-            amount = Math.Min(amount, 0);
+            //amount = Math.Min(amount, 0);
             _armor?.OnTakenDamage(amount);
             base.ApplyDamage(amount);
         }

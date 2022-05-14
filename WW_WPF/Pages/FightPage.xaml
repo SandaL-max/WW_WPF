@@ -26,7 +26,7 @@
     </Page.Resources>
     <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch" ShowGridLines="False">
         <Grid.Background>
-            <ImageBrush ImageSource="/resources/eeg2ux3v.png" Stretch="UniformToFill"/>
+            <ImageBrush ImageSource="/resources/Background.png" Stretch="UniformToFill"/>
         </Grid.Background>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>

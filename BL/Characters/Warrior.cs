@@ -4,7 +4,7 @@ namespace WW_WPF.BL
     {
         public Warrior()
         {
-            ImageName = "pngwing.com.png";
+            ImageName = "Warrior.png";
             _baseDamage = 10;
         }
         public override string GetEntityInfo()
