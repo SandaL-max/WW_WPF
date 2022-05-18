@@ -93,6 +93,15 @@
             <ListBoxItem>
                 <Image Source="/resources/Inventory.png"/>
             </ListBoxItem>
+            <ListBoxItem>
+                <Image Source="/resources/Inventory.png"/>
+            </ListBoxItem>
+            <ListBoxItem>
+                <Image Source="/resources/Inventory.png"/>
+            </ListBoxItem>
+            <ListBoxItem>
+                <Image Source="/resources/Inventory.png"/>
+            </ListBoxItem>
         </ListBox>
     </Grid>
 </Page>
