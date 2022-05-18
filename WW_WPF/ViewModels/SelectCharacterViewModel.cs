@@ -31,8 +31,10 @@ namespace WW_WPF.ViewModels
                   {
                       var appState = new AppState();
                       appState.Character = new Warrior();
-                      var fight = new FightPage();
-                      Page.NavigationService.Navigate(fight);
+                      AppState.FightPage = new FightPage();
+                      AppState.GameOverPage = new GameOver();
+                      AppState.InventoryPage = new InventoryPage();
+                      Page.NavigationService.Navigate(AppState.FightPage);
                   }));
             }
         }
@@ -46,12 +48,17 @@ namespace WW_WPF.ViewModels
                   {
                       var appState = new AppState();
                       appState.Character = new Wizard();
-                      var fight = new FightPage();
-                      Page.NavigationService.Navigate(fight);
+                      AppState.FightPage = new FightPage();
+                      AppState.GameOverPage = new GameOver();
+                      AppState.InventoryPage = new InventoryPage();
+                      Page.NavigationService.Navigate(AppState.FightPage);
                   }));
             }
         }
-        public SelectCharacterViewModel(Page _page) { Page = _page; }
+        public SelectCharacterViewModel(Page _page) 
+        { 
+            Page = _page;
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string prop = "")

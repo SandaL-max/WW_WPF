@@ -17,7 +17,6 @@
     <None Remove="resources\Warrior.png" />
     <None Remove="resources\WizardLeft.png" />
     <None Remove="resources\WizardRight.png" />
-    <None Remove="resources\zeln45qx.bmp" />
   </ItemGroup>
 
   <ItemGroup>
@@ -50,9 +49,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="resources\WizardRight.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="resources\zeln45qx.bmp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>

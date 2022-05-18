@@ -110,7 +110,7 @@ namespace WW_WPF.ViewModels
                       if (!appState.Character!.IsAlive)
                       {
                           var GameOverPage = new GameOver();
-                          Page.NavigationService.Navigate(GameOverPage);
+                          Page.NavigationService.Navigate(AppState.GameOverPage);
                       }
                   }));
             }

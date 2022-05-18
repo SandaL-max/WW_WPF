@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WW_WPF.Pages
+namespace WW_WPF
 {
     /// <summary>
     /// Логика взаимодействия для InventoryPage.xaml

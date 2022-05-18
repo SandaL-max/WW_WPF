@@ -35,8 +35,8 @@ namespace WW_WPF.ViewModels
                 return _btnRestart ??
                   (_btnRestart = new RelayCommand(obj =>
                   {
-                      var SelectCharacter = new SelectCharacter();
-                      Page.NavigationService.Navigate(SelectCharacter);
+                      AppState.SelectCharacterPage = new SelectCharacter();
+                      Page.NavigationService.Navigate(AppState.SelectCharacterPage);
                   }));
             }
         }

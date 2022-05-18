@@ -1,9 +1,9 @@
-﻿<Page x:Class="WW_WPF.FightPage"
+﻿<Page x:Class="WW_WPF.InventoryPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:WW_WPF" xmlns:viewmodels="clr-namespace:WW_WPF.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:FightPageViewModel}"
+      xmlns:local="clr-namespace:WW_WPF" xmlns:viewmodels="clr-namespace:WW_WPF.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:InventoryPageViewModel}"
       mc:Ignorable="d" 
       d:DesignHeight="630" d:DesignWidth="800"
       Title="Inventory">
@@ -28,33 +28,71 @@
         <Grid.Background>
             <ImageBrush ImageSource="/resources/Background.png" Stretch="UniformToFill"/>
         </Grid.Background>
-        <ListBox Name="list1"  Height="200" Width="200" Background="{x:Null}" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="15*" x:Name="CenterGridColumn"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <ListBox Grid.Column="1" Grid.Row="1" Name="inventory" Background="{x:Null}" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden">
             
             <ListBox.ItemsPanel>
 
                 <ItemsPanelTemplate>
 
-                    <WrapPanel  Height="200" Width="200"  IsItemsHost="True"  Orientation="Horizontal"></WrapPanel>
+                    <WrapPanel Width="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ActualWidth}" ItemHeight="64" ItemWidth="64" IsItemsHost="True"  Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"></WrapPanel>
 
                 </ItemsPanelTemplate>
 
             </ListBox.ItemsPanel>
-            <ListBoxItem>1</ListBoxItem>
-            <ListBoxItem>1</ListBoxItem>
-            <ListBoxItem>1</ListBoxItem>
-            <ListBoxItem>1</ListBoxItem>
-            <ListBoxItem>1</ListBoxItem>
-            <ListBoxItem>1</ListBoxItem>
-            <ListBoxItem>1</ListBoxItem>
-            <ListBoxItem>1</ListBoxItem>
-            <ListBoxItem>1</ListBoxItem>
-            <ListBoxItem>1</ListBoxItem>
-            <ListBoxItem>1</ListBoxItem>
-            <ListBoxItem>1</ListBoxItem>
-            <ListBoxItem>1</ListBoxItem>
-            <ListBoxItem>1</ListBoxItem>
-            <ListBoxItem>1</ListBoxItem>
-            <ListBoxItem>1</ListBoxItem>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Image/>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+            <ListBoxItem>
+                <Image Source="/resources/Inventory.png"/>
+            </ListBoxItem>
+            <ListBoxItem>
+                <Image Source="/resources/Inventory.png"/>
+            </ListBoxItem>
+            <ListBoxItem>
+                <Image Source="/resources/Inventory.png"/>
+            </ListBoxItem>
+            <ListBoxItem>
+                <Image Source="/resources/Inventory.png"/>
+            </ListBoxItem>
+            <ListBoxItem>
+                <Image Source="/resources/Inventory.png"/>
+            </ListBoxItem>
+            <ListBoxItem>
+                <Image Source="/resources/Inventory.png"/>
+            </ListBoxItem>
+            <ListBoxItem>
+                <Image Source="/resources/Inventory.png"/>
+            </ListBoxItem>
+            <ListBoxItem>
+                <Image Source="/resources/Inventory.png"/>
+            </ListBoxItem>
+            <ListBoxItem>
+                <Image Source="/resources/Inventory.png"/>
+            </ListBoxItem>
+            <ListBoxItem>
+                <Image Source="/resources/Inventory.png"/>
+            </ListBoxItem>
+            <ListBoxItem>
+                <Image Source="/resources/Inventory.png"/>
+            </ListBoxItem>
+            <ListBoxItem>
+                <Image Source="/resources/Inventory.png"/>
+            </ListBoxItem>
+            <ListBoxItem>
+                <Image Source="/resources/Inventory.png"/>
+            </ListBoxItem>
         </ListBox>
     </Grid>
 </Page>

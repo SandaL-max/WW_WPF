@@ -24,8 +24,8 @@ namespace WW_WPF
         {
             InitializeComponent();
             AppState.MainWindow = this;
-            var select = new SelectCharacter();
-            //this.Content = select;
+            AppState.SelectCharacterPage = new SelectCharacter();
+            frame.Navigate(AppState.SelectCharacterPage);
         }
     }
 }

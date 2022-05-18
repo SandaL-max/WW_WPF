@@ -6,7 +6,7 @@ namespace WW_WPF.BL
         {
             _baseDamage = 10;
             Health = new HealthSystem(75, 75);
-            ImageName = "WiazardRight.png";
+            ImageName = "WizardRight.png";
         }
 
         public override string GetEntityInfo()
