@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:WW_WPF" xmlns:viewmodels="clr-namespace:WW_WPF.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:InventoryPageViewModel}"
       mc:Ignorable="d" 
       d:DesignHeight="630" d:DesignWidth="800"
-      Title="Inventory">
+      Title="Inventory" ShowsNavigationUI="False">
     <Page.Resources>
         <Style x:Key="ProgressBar">
             <Setter Property="ItemsControl.Foreground" Value="Red"/>
@@ -28,80 +28,77 @@
         <Grid.Background>
             <ImageBrush ImageSource="/resources/Background.png" Stretch="UniformToFill"/>
         </Grid.Background>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="15*" x:Name="CenterGridColumn"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="10*"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <ListBox Grid.Column="1" Grid.Row="1" Name="inventory" Background="{x:Null}" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden">
-            
-            <ListBox.ItemsPanel>
+        <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch" ShowGridLines="False" Margin="30">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="6*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <ListBox Grid.Column="0" Grid.Row="0" Name="equiped" Background="{x:Null}" ScrollViewer.VerticalScrollBarVisibility="Hidden" VerticalAlignment="Stretch">
+                <ListBox.ItemsPanel>
 
-                <ItemsPanelTemplate>
+                    <ItemsPanelTemplate>
 
-                    <WrapPanel Width="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ActualWidth}" ItemHeight="64" ItemWidth="64" IsItemsHost="True"  Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"></WrapPanel>
+                        <WrapPanel Width="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ActualWidth}" ItemHeight="64" ItemWidth="64" IsItemsHost="True"  Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"></WrapPanel>
 
-                </ItemsPanelTemplate>
+                    </ItemsPanelTemplate>
 
-            </ListBox.ItemsPanel>
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <Image/>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-            <ListBoxItem>
-                <Image Source="/resources/Inventory.png"/>
-            </ListBoxItem>
-            <ListBoxItem>
-                <Image Source="/resources/Inventory.png"/>
-            </ListBoxItem>
-            <ListBoxItem>
-                <Image Source="/resources/Inventory.png"/>
-            </ListBoxItem>
-            <ListBoxItem>
-                <Image Source="/resources/Inventory.png"/>
-            </ListBoxItem>
-            <ListBoxItem>
-                <Image Source="/resources/Inventory.png"/>
-            </ListBoxItem>
-            <ListBoxItem>
-                <Image Source="/resources/Inventory.png"/>
-            </ListBoxItem>
-            <ListBoxItem>
-                <Image Source="/resources/Inventory.png"/>
-            </ListBoxItem>
-            <ListBoxItem>
-                <Image Source="/resources/Inventory.png"/>
-            </ListBoxItem>
-            <ListBoxItem>
-                <Image Source="/resources/Inventory.png"/>
-            </ListBoxItem>
-            <ListBoxItem>
-                <Image Source="/resources/Inventory.png"/>
-            </ListBoxItem>
-            <ListBoxItem>
-                <Image Source="/resources/Inventory.png"/>
-            </ListBoxItem>
-            <ListBoxItem>
-                <Image Source="/resources/Inventory.png"/>
-            </ListBoxItem>
-            <ListBoxItem>
-                <Image Source="/resources/Inventory.png"/>
-            </ListBoxItem>
-            <ListBoxItem>
-                <Image Source="/resources/Inventory.png"/>
-            </ListBoxItem>
-            <ListBoxItem>
-                <Image Source="/resources/Inventory.png"/>
-            </ListBoxItem>
-            <ListBoxItem>
-                <Image Source="/resources/Inventory.png"/>
-            </ListBoxItem>
-        </ListBox>
+                </ListBox.ItemsPanel>
+                <ListBoxItem>
+                    <StackPanel Width="55" Height="55" DataContext="{Binding appState.Character.Weapon}">
+                        <Image Source="{Binding ImageObj}"/>
+                        <TextBlock Text="{Binding Name}" HorizontalAlignment="Center" Foreground="White" FontFamily="Cascadia Code" FontSize="15">Weapon</TextBlock>
+                        <StackPanel.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Header="{Binding Description}"/>
+                            </ContextMenu>
+                        </StackPanel.ContextMenu>
+                    </StackPanel>
+                </ListBoxItem>
+                <ListBoxItem>
+                    <StackPanel Width="55" Height="55" DataContext="{Binding appState.Character.Armor}">
+                        <Image Source="{Binding ImageObj}"/>
+                        <TextBlock Text="{Binding Name}" HorizontalAlignment="Center" Foreground="White" FontFamily="Cascadia Code" FontSize="15">Armor</TextBlock>
+                        <StackPanel.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Header="{Binding Description}"/>
+                            </ContextMenu>
+                        </StackPanel.ContextMenu>
+                    </StackPanel>
+                </ListBoxItem>
+            </ListBox>
+            <ListBox Grid.Column="0" Grid.Row="1" Name="inventory" Background="{x:Null}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Hidden" ItemsSource="{Binding Path=appState.Character.Inventory}" SelectedItem="{Binding SelectedItem}">
+
+                <ListBox.ItemsPanel>
+
+                    <ItemsPanelTemplate>
+
+                        <WrapPanel Width="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ActualWidth}" ItemHeight="128" ItemWidth="128" IsItemsHost="True"  Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"></WrapPanel>
+
+                    </ItemsPanelTemplate>
+
+                </ListBox.ItemsPanel>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <Image Source="{Binding ImageObj}"/>
+                            <TextBlock Text="{Binding Name}" HorizontalAlignment="Center" Foreground="White" FontFamily="Cascadia Code" FontSize="15"/>
+                            <StackPanel.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem Header="{Binding Description}"/>
+                                </ContextMenu>
+                            </StackPanel.ContextMenu>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <StackPanel Grid.Column="0" Grid.Row="2" Orientation="Horizontal">
+                <Button Command="{Binding btnReturn}" Height="auto" Width="auto" Content="Вернуться" FontFamily="Cascadia Code" FontSize="20" Foreground="White" Background="Transparent" BorderBrush="White" BorderThickness="3" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10" Padding="5,5,5,5"></Button>
+                <Button Command="{Binding btnUse}" CommandParameter="{Binding SelectedItem}" Height="auto" Width="auto" Content="Использовать" FontFamily="Cascadia Code" FontSize="20" Foreground="White" Background="Transparent" BorderBrush="White" BorderThickness="3" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10" Padding="5,5,5,5"></Button>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Page>

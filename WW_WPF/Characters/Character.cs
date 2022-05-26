@@ -1,5 +1,7 @@
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Collections.ObjectModel;
 
 namespace WW_WPF.BL
 {
@@ -7,13 +9,32 @@ namespace WW_WPF.BL
     {
         protected LevelSystem _level = new LevelSystem();
         protected Armor? _armor;
+        public Armor? Armor
+        {
+            get { return _armor; }
+            set
+            {
+                _armor = value;
+                OnPropertyChanged("Armor");
+            }
+        }
         protected Weapon? _weapon;
+
+        public Weapon? Weapon
+        {
+            get { return _weapon; }
+            set
+            {
+                _weapon = value;
+                OnPropertyChanged("Weapon");
+            }
+        }
         protected int _weaponDamage = 0;
         protected int _armorBonus = 0;
 
-        protected List<IItem> _inventory = new List<IItem>();
+        protected ObservableCollection<IItem> _inventory = new ObservableCollection<IItem>();
 
-        public List<IItem> Inventory
+        public ObservableCollection<IItem> Inventory
         {
             get { return _inventory; }
             set
@@ -37,14 +58,14 @@ namespace WW_WPF.BL
 
         public Character()
         {
-            _level.levelUp += OnLevelUp;
+            Level.levelUp += OnLevelUp;
         }
 
         public override void ApplyDamage(int amount)
         {
             amount -= _armorBonus;
             //amount = Math.Min(amount, 0);
-            _armor?.OnTakenDamage(amount);
+            Armor?.OnTakenDamage(amount);
             base.ApplyDamage(amount);
         }
 
@@ -55,9 +76,9 @@ namespace WW_WPF.BL
             if (hitable is Enemy)
             {
                 Enemy enemy = (Enemy)hitable;
-                _weapon?.OnHit(enemy);
+                Weapon?.OnHit(enemy);
                 if (!enemy.IsAlive)
-                    _level.AddXp(enemy.Health.MaxHealth);
+                    Level.AddXp(enemy.Health.MaxHealth);
             }
         }
 
@@ -65,16 +86,16 @@ namespace WW_WPF.BL
         {
             if (item is Weapon)
             {
-                if (_weapon is not null)
+                if (Weapon is not null)
                     Unequip(_weapon);
-                _weapon = (Weapon)item;
+                Weapon = (Weapon)item;
             }
 
             if (item is Armor)
             {
                 if (_armor is not null)
                     Unequip(_armor);
-                _armor = (Armor)item;
+                Armor = (Armor)item;
             }
             _armorBonus += item.ArmorBonus;
             _weaponDamage += item.DamageBonus;
@@ -82,7 +103,7 @@ namespace WW_WPF.BL
 
         public void Unequip(IEquipable item)
         {
-            _inventory.Add(item);
+            Inventory.Add(item);
             _armorBonus -= item.ArmorBonus;
             _weaponDamage -= item.DamageBonus;
         }

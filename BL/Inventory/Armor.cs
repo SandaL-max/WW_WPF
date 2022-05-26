@@ -9,6 +9,7 @@ namespace WW_WPF.BL
         public abstract string Name { get; }
 
         public abstract string Description  { get; }
+        public abstract string ImageName  { get; }
 
         public virtual void OnTakenDamage(int amount) { }
     }

@@ -5,8 +5,8 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:WW_WPF" xmlns:viewmodels="clr-namespace:WW_WPF.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:FightPageViewModel}"
       mc:Ignorable="d" 
-      d:DesignHeight="630" d:DesignWidth="800"
-      Title="FightPage">
+      d:DesignHeight="630" d:DesignWidth="900"
+      Title="FightPage" ShowsNavigationUI="False">
     <Page.Resources>
         <Style x:Key="ProgressBar">
             <Setter Property="ItemsControl.Foreground" Value="Red"/>
@@ -65,6 +65,7 @@
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                     <Button Command="{Binding btnAttack}" Height="auto" Width="auto" Content="Атаковать" FontFamily="Cascadia Code" FontSize="20" Foreground="White" Background="Transparent" BorderBrush="White" BorderThickness="3" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10" Padding="5,5,5,5"></Button>
                     <Button Command="{Binding btnHeal}" Height="auto" Width="auto" Content="Лечить" FontFamily="Cascadia Code" FontSize="20" Foreground="White" Background="Transparent" BorderBrush="White" BorderThickness="3" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10" Padding="5,5,5,5"></Button>
+                    <Button Command="{Binding btnInventory}" Height="auto" Width="auto" Content="Инвентарь" FontFamily="Cascadia Code" FontSize="20" Foreground="White" Background="Transparent" BorderBrush="White" BorderThickness="3" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10" Padding="5,5,5,5"></Button>
                 </StackPanel>
             </StackPanel>
             <StackPanel Grid.Row="1" Grid.Column="2">
@@ -76,9 +77,9 @@
                 </StackPanel>
             </StackPanel>
             <Image Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Source="{Binding CharacterImage}" Stretch="Uniform" Height="auto"/>
-            <StackPanel Grid.Row="2" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Center">
-                <ProgressBar Visibility="Visible" Height="10" Value="70" Style="{StaticResource ProgressBar}"></ProgressBar>
-                <Image Visibility="Visible" Source="/resources/pngwing.com(5).png" Stretch="Uniform" Height="auto"/>
+            <StackPanel Grid.Row="2" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Center" Visibility="{Binding BarricadeVisibility}">
+                <ProgressBar Visibility="Visible" Height="10" Maximum="{Binding appState.Enemy.Barricade.MaxDurability}" Value="{Binding appState.Enemy.Barricade.Durability}" Style="{StaticResource ProgressBar}"></ProgressBar>
+                <Image Visibility="Visible" Source="/resources/Barricade.png" Stretch="Uniform" Height="auto"/>
             </StackPanel>
             <Image Grid.Row="2" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" Source="{Binding EnemyImage}" Stretch="Uniform" Height="auto"/>
         </Grid>

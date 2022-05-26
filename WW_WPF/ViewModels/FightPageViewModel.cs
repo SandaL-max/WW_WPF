@@ -86,25 +86,31 @@ namespace WW_WPF.ViewModels
                   (_btnAttack = new RelayCommand(obj =>
                   {
                       if (appState.Enemy!.Barricade is not null && appState.Enemy.Barricade.IsAlive)
+                      {
                           appState.Character!.Hit(appState.Enemy.Barricade);
+                          if (!appState.Enemy.Barricade.IsAlive)
+                              BarricadeVisibility = "Hidden";
+                      }
                       else
                           appState.Character!.Hit(appState.Enemy!);
                       appState.Enemy!.Hit(appState.Character!);
                       if (!appState.Enemy!.IsAlive)
                       {
+                          var enemyDrop = appState.Enemy.GetDrop();
+                          foreach (var item in enemyDrop)
+                          {
+                              appState.Character.Inventory.Add(item);
+                          }
                           Random rnd = new Random();
                           if (rnd.Next(0, 101) >= 50) 
                               appState.Enemy = new Barbarian(new LevelSystem(rnd.Next(1, appState.Character.Level.LevelValue + 1)));
                           else
                               appState.Enemy = new Slime(new LevelSystem(rnd.Next(1, appState.Character.Level.LevelValue + 1)));
-                          EnemyImage = GetImageFromSources(appState.Enemy.ImageName);
+                          EnemyImage = AppState.GetImageFromSources(appState.Enemy.ImageName);
                           if (rnd.Next(0, 101) >= 50)
                           {
                               appState.Enemy!.Barricade = new Barricade(50);
-                          }
-                          else
-                          {
-
+                              BarricadeVisibility = "Visible";
                           }
                       }
                       if (!appState.Character!.IsAlive)
@@ -128,27 +134,30 @@ namespace WW_WPF.ViewModels
             }
         }
         #endregion
+        private RelayCommand _btnInventory;
+        public RelayCommand btnInventory
+        {
+            get
+            {
+                return _btnInventory ??
+                  (_btnInventory = new RelayCommand(obj =>
+                  {
+                      Page.NavigationService.Navigate(AppState.InventoryPage);
+                  }));
+            }
+        }
         public FightPageViewModel(Page _page)
         {
             appState = new AppState();
             Page = _page;
             appState.Enemy = new Barbarian();
-            CharacterImage = GetImageFromSources(appState.Character!.ImageName);
-            EnemyImage = GetImageFromSources(appState.Enemy!.ImageName);
-        }
-        public TransformedBitmap GetImageFromSources(string name)
-        {
-            var bitMapImage = new BitmapImage();
-            bitMapImage.BeginInit();
-            bitMapImage.UriSource = new Uri(ResorcesPath + name);
-            bitMapImage.EndInit();
+            appState.Enemy.Barricade = new Barricade(50);
+            BarricadeVisibility = "Visible";
 
-            var tbm = new TransformedBitmap();
-            tbm.BeginInit();
-            tbm.Source = bitMapImage;
-            tbm.EndInit();
-            return tbm;
+            CharacterImage = AppState.GetImageFromSources(appState.Character!.ImageName);
+            EnemyImage = AppState.GetImageFromSources(appState.Enemy!.ImageName);
         }
+        
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string prop = "")
         {

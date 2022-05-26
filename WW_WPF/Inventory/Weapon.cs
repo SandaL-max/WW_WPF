@@ -1,3 +1,5 @@
+using System.Windows.Media.Imaging;
+
 namespace WW_WPF.BL
 {
     public abstract class Weapon : IEquipable
@@ -10,6 +12,10 @@ namespace WW_WPF.BL
 
         public abstract string Description  { get; }
         public abstract string ImageName  { get; }
+        public TransformedBitmap ImageObj
+        {
+            get { return AppState.GetImageFromSources(ImageName); }
+        }
 
         public virtual void OnHit(Enemy enemy) { }
     }

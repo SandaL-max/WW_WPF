@@ -1,6 +1,8 @@
+using System.Windows.Media.Imaging;
+
 namespace WW_WPF.BL
 {
-    public abstract class Weapon : IEquipable
+    public abstract class Armor : IEquipable
     {
         public abstract int ArmorBonus { get; }
 
@@ -11,6 +13,10 @@ namespace WW_WPF.BL
         public abstract string Description  { get; }
         public abstract string ImageName  { get; }
 
-        public virtual void OnHit(Enemy enemy) { }
+        public TransformedBitmap ImageObj
+        {
+            get { return AppState.GetImageFromSources(ImageName); }
+        }
+        public virtual void OnTakenDamage(int amount) { }
     }
 }

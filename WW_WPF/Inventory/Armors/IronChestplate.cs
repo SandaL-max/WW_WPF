@@ -9,6 +9,6 @@ namespace WW_WPF.BL
         public override string Name => "Железный нагрудник";
 
         public override string Description => "Неплохо защищает зад, но сука тяжелый";
-        public override string ImageName => "IronChestplate.png";
+        public override string ImageName => "Chestplate.png";
     }
 }

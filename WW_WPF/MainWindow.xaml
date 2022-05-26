@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WW_WPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="700" Width="800" ResizeMode="CanResize"
+        Title="MainWindow" Height="700" Width="900" ResizeMode="CanResize"
         WindowStartupLocation="CenterScreen">
-    <Frame x:Name="frame" >
+    <Frame x:Name="frame" NavigationUIVisibility="Hidden">
 
     </Frame>
 </Window>

@@ -11,16 +11,15 @@
     <None Remove="resources\Background.png" />
     <None Remove="resources\Barbarian.png" />
     <None Remove="resources\Barricade.png" />
+    <None Remove="resources\ChestPlate.png" />
+    <None Remove="resources\Cloak.png" />
+    <None Remove="resources\HealthPotion.png" />
     <None Remove="resources\Inventory.png" />
     <None Remove="resources\Slime.png" />
     <None Remove="resources\Sword.png" />
     <None Remove="resources\Warrior.png" />
     <None Remove="resources\WizardLeft.png" />
     <None Remove="resources\WizardRight.png" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\BL\BL.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -31,6 +30,15 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="resources\Barricade.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="resources\ChestPlate.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="resources\Cloak.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="resources\HealthPotion.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="resources\Inventory.png">
